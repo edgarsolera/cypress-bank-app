@@ -1,0 +1,49 @@
+.container {
+    background-color: #fff;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+    padding: 2rem;
+    width: 110vh;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .header h2{
+    color: #3e5eea;
+  }
+  
+  .create-button {
+    background-color: #3e5eea;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+  }
+  
+  .account-list {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0 0;
+  }
+  
+  .account-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  .delete-button {
+    background-color: #fff;
+    color: #000000;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+  }
+  

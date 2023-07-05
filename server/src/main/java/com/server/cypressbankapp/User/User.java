@@ -2,21 +2,38 @@ package com.server.cypressbankapp.User;
 
 public class User {
     private final String _id;
-    private final String userName;
+
+    private final String name;
+
+    private final String lastname;
+    private final String email;
 
     private final String password;
 
-    public User(String _id, String userName, String password) {
-        this._id = _id;
-        this.userName = userName;
-        this.password = password;
+    public String getName() {
+        return name;
     }
 
-    public String getUserId() {
+    public String getLastname() {
+        return lastname;
+    }
+
+    public User(String _id, String email, String name, String lastname, String password) {
+        this._id = _id;
+        this.name = name;
+        this.lastname = lastname;
+        this.email = email;
+        this.password = password;
+    }
+    public String getEmail() {
+        return email;
+    }
+
+    public String get_id() {
         return _id;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getPassword() {
+        return password;
     }
 }

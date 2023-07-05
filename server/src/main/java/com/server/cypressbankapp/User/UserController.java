@@ -1,27 +1,31 @@
 package com.server.cypressbankapp.User;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/v1/signup")
+@RequestMapping("api/v1/user")
 public class UserController {
+    @Autowired
+    private UserService userService;
 
-    private static final List<User> USERS = Arrays.asList(
-            new User("1","Nicolas"),
-            new User("2", "Test")
-    );
+    public List<User> fetchAllUsers(){
+        return userService.getAllUsers();
+    }
 
-    @GetMapping(path = "{userId}")
+    @GetMapping(path = "/signup/{userId}")
     public User getUser(@PathVariable("userId") String id){
+        List<User> USERS = fetchAllUsers();
         return USERS.stream()
-                .filter(user ->  id.equals(user.getUserId()))
-                .findFirst()
+                .filter(user ->  id.equals(user.getUserId())).findFirst()
                 .orElseThrow(()-> new IllegalStateException("User " + id + "Does Not exist"));
     }
+    @PostMapping("/insert")
+    public void addUser(@RequestBody User user){
+
+        userService.insertUser(user);
+    }
+
 }

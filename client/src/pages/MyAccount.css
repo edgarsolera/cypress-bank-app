@@ -1,0 +1,56 @@
+.my-account-main {
+   display: flex; 
+  flex-direction: column;
+  align-items: center;
+  width: 100vh;
+  height: auto;
+  box-shadow: 0 0px 4px rgba(0, 0, 0, 0.2);
+  background-color: #ffffff;
+  padding: 2vh 6vh 4vh 6vh; 
+}
+
+.my-account-container {
+  width: 100%;
+  }
+  
+  .my-account-header {
+    display: flex;
+    align-items: flex-start;
+  }
+  
+  .my-account-header h2 {
+    margin:0 0 4vh 0;
+    color: #3e5eea;
+  }
+  
+  .my-account-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  
+  .my-account-image img {
+    width: 40vh;
+    height: auto;
+    margin-right: 20px;
+  }
+  
+  .my-account-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .my-account-form input {
+    margin-bottom: 10px;
+    padding: 5px;
+    width: 40vh;
+  }
+  
+  .my-account-save-button {
+    background-color: #3e5eea;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  

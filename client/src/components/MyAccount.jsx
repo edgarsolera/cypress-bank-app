@@ -1,4 +1,3 @@
-
 import './MyAccount.css';
 import Account from '../assets/Account.jpg';
 

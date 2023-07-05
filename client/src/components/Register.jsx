@@ -1,10 +1,14 @@
 import { useState } from 'react';
-import './Login.css'; // You can use the same css file if the styles are identical
+import './Register.css';
 import Logo from '../assets/Logo.svg'
 
-export const Login = () => {
+
+export const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [name, setName] = useState('');
+  const [surname, setSurname] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -12,9 +16,12 @@ export const Login = () => {
     const userData = {
       email: email,
       password: password,
+      confirmPassword: confirmPassword,
+      name: name,
+      surname: surname
     };
 
-    fetch('/api/login', { // Change the endpoint to your authentication endpoint
+    fetch('/api/register', {
       method: 'POST',
       headers: {
         'Content-Type' : 'application/json'
@@ -23,7 +30,7 @@ export const Login = () => {
     })
     .then(res => {
         if (!res.ok) {
-      throw new Error ('Invalid credentials');
+      throw new Error ('Email already registered');
     }
      return res.json();
   }
@@ -44,10 +51,30 @@ export const Login = () => {
       <div className='login'>
         <div className='title'>
           <img className='logo' src={Logo}/>
-          <h3>Log in</h3>
+          <h3>Sign up</h3>
         </div>
         <div className='loginform'>
           <form onSubmit={handleSubmit}>
+            <div>
+              <label htmlFor="name">First Name</label>
+              <input
+                type="text"
+                id="name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+              />
+            </div>
+            <div>
+              <label htmlFor="surname">Last Name</label>
+              <input
+                type="text"
+                id="surname"
+                value={surname}
+                onChange={(e) => setSurname(e.target.value)}
+                required
+              />
+            </div>
             <div>
               <label htmlFor="email">Email</label>
               <input
@@ -68,10 +95,22 @@ export const Login = () => {
                 required
               />
             </div>
-            <button type="submit">LOG IN</button>
+            <div>
+              <label htmlFor="confirmPassword">Confirm Password</label>
+              <input
+                type="password"
+                id="confirmPassword"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                required
+              />
+            </div>
+            <button type="submit">SIGN UP</button>
           </form>
         </div>
       </div>
     </div>
   );
 };
+
+

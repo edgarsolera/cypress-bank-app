@@ -13,6 +13,11 @@
   z-index: 9999; 
 }
 
+.navbar span{
+  color: black;
+  font-weight: 400;
+}
+
 .navbar-top-long {
   display: flex;
   align-items: center;

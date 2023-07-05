@@ -25,6 +25,6 @@ public class UserService {
                return ResponseEntity.badRequest().body("The user Already Exist");
            }
            userRepository.save(user);
-           return ResponseEntity.ok("User registered successfully");
+                return ResponseEntity.ok("User registered successfully");
        }
 }

@@ -1,11 +1,16 @@
 package com.server.cypressbankapp.User;
 
+import jakarta.validation.constraints.Email;
+import org.springframework.data.mongodb.core.mapping.MongoId;
+
 public class User {
+    @MongoId
     private final String _id;
 
     private final String name;
 
     private final String lastname;
+    @Email(message = "Invalid email format")
     private final String email;
 
     private final String password;

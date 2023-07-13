@@ -21,7 +21,7 @@ export const Register = () => {
       surname: surname
     };
 
-    fetch('/api/register', {
+    fetch('http://localhost:8081/api/v1/user/register', {
       method: 'POST',
       headers: {
         'Content-Type' : 'application/json'

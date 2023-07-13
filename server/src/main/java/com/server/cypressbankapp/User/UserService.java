@@ -1,6 +1,7 @@
 package com.server.cypressbankapp.User;
 
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -21,8 +22,11 @@ public class UserService {
        }
 
        public ResponseEntity<String> register (User user){
+
            if (userRepository.findByEmail(user.getEmail()).isPresent()) {
-               return ResponseEntity.badRequest().body("The user Already Exist");
+
+               return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("The user already exist");
+
            }
            userRepository.save(user);
                 return ResponseEntity.ok("User registered successfully");

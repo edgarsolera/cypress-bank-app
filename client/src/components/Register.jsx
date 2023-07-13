@@ -21,10 +21,13 @@ export const Register = () => {
       surname: surname
     };
 
-    fetch('/api/register', {
+    fetch('http://localhost:8080/api/v1/user/register', {
+      mode: 'no-cors',
       method: 'POST',
       headers: {
-        'Content-Type' : 'application/json'
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE",
       },
       body: JSON.stringify(userData)
     })

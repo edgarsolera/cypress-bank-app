@@ -14,8 +14,9 @@ export const Login = () => {
       password: password,
     };
 
-    fetch('/api/login', { // Change the endpoint to your authentication endpoint
-      method: 'POST',
+    fetch('http://localhost:8080/api/v1/user/signup/64a57320b868536eba5436f7', { // Change the endpoint to your authentication endpoint
+    mode: 'no-cors',  
+    method: 'POST',
       headers: {
         'Content-Type' : 'application/json'
       },

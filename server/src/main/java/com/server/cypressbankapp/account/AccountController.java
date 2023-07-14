@@ -8,11 +8,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/v1/account")
-
-
 public class AccountController {
     private final AccountService accountService;
-
 
     public AccountController(AccountService accountService) {
         this.accountService = accountService;
@@ -42,5 +39,4 @@ public class AccountController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("{\"message\":\"The account doesnt exist\"}");
         }
     }
-
 }

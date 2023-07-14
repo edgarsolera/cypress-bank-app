@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import './Login.css'; // You can use the same css file if the styles are identical
-import Logo from '../assets/Logo.svg'
+import { Logo } from '../config/assets-config'
 
 export const Login = () => {
   const [email, setEmail] = useState('');
@@ -22,23 +22,10 @@ export const Login = () => {
       },
       body: JSON.stringify(userData)
     })
-    .then(res => {
-        if (!res.ok) {
-      throw new Error ('Invalid credentials');
-    }
-     return res.json();
+    .then(res => res.json())
+    .then(data => console.log(data))
+    .catch(err => console.log(err))
   }
-      
-      )
-    .then(data => {
-      console.log('Response from backend: ', data);
-    })
-    .catch(error => {
-      console.error('Error: ', error);
-    })
-    
-    console.log('User Data:', userData);
-  };
 
   return (
     <div className='main'>
@@ -76,3 +63,5 @@ export const Login = () => {
     </div>
   );
 };
+
+export default Login

@@ -1,7 +1,11 @@
 import './MyAccount.css';
 import Account from '../assets/Account.jpg';
+import { useContext } from 'react';
+import { LoginContext } from '../context/login-context';
 
 const MyAccount = () => {
+
+  const { userData, setUserData } = useContext(LoginContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -14,14 +18,16 @@ const MyAccount = () => {
     const telephone = formData.get('telephone');
 
     const newUserData = {
-      name: name,
-      surname: surname,
-      email: email,
-      telephone: telephone
+      ...userData,
+      name: name || userData.name,
+      surname: surname || userData.surname,
+      email: email || userData.email,
+      telephone: telephone || userData.telephone
     }
     console.log(formData);
-    console.log(newUserData);
+    setUserData(newUserData)
   }
+
   return (
     <div className="my-account-main">
       <div className="my-account-container">
@@ -33,10 +39,10 @@ const MyAccount = () => {
           <img src={Account} alt="User Profile" />
         </div>
         <form onSubmit={handleSubmit} className="my-account-form">
-          <input type="text" name="name" placeholder="Name" />
-          <input type="text" name="surname" placeholder="Surname" />
-          <input type="email" name="email" placeholder="Email" />
-          <input type="tel" name="telephone" placeholder="Telephone Number" />
+          <input type="text" name="name" placeholder={userData.name} />
+          <input type="text" name="surname" placeholder={userData.surname} />
+          <input type="email" name="email" placeholder={userData.email} />
+          <input type="tel" name="telephone" placeholder={userData.phone} />
           <button className="my-account-save-button">SAVE</button>
         </form>
       </div>

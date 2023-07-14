@@ -2,11 +2,9 @@ package com.server.cypressbankapp.User;
 
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:5173")
@@ -15,26 +13,24 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    public List<User> fetchAllUsers(){
-        return userService.getAllUsers();
-    }
+        @PostMapping("/login")
+        //public ResponseEntity<String> login(@RequestParam String email, @RequestParam String password) {
+        public ResponseEntity<String> login(@RequestBody User user) {
+            boolean loginSuccess = userService.login(user.getEmail(), user.getPassword());
+            if (loginSuccess) {
+                return ResponseEntity.status(HttpStatus.ACCEPTED).body("{\"message\":\"Login successful\"}");
+            } else {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("{\"message\":\"User or Password doesnt exist\"}");
+            }
+        }
 
-    @GetMapping(path = "/signup/{userId}")
-    public User getUser(@PathVariable("userId") String id){
-        List<User> USERS = fetchAllUsers();
-        return USERS.stream()
-                .filter(user ->  id.equals(user.get_id())).findFirst()
-                .orElseThrow(()-> new IllegalStateException("User " + id + "Does Not exist"));
-    }
-    @PostMapping("/insert")
-    public void addUser(@RequestBody User user){
-
-        userService.insertUser(user);
-    }
-
-    @PostMapping("/register")
-    public void registerUser(@Valid @RequestBody User user) {
-        userService.register(user);
-    }
-
+        @PostMapping("/register")
+        public ResponseEntity<String> registerUser(@Valid @RequestBody User user) {
+            boolean registrationSuccess = userService.register(user);
+            if (registrationSuccess) {
+                return ResponseEntity.status(HttpStatus.ACCEPTED).body("{\"message\":\"User registered successfully\"}");
+            } else {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("{\"message\":\"The user already exists\"}");
+            }
+        }
 }

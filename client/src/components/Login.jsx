@@ -14,30 +14,18 @@ export const Login = () => {
       password: password,
     };
 
-    fetch('http://localhost:8080/api/v1/user/signup/64a57320b868536eba5436f7', { // Change the endpoint to your authentication endpoint
-    mode: 'no-cors',  
-    method: 'POST',
+    fetch('http://localhost:8080/api/v1/user/login', { // Change the endpoint to your authentication endpoint
+      method: 'POST',
       headers: {
-        'Content-Type' : 'application/json'
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE",
       },
       body: JSON.stringify(userData)
     })
-    .then(res => {
-        if (!res.ok) {
-      throw new Error ('Invalid credentials');
-    }
-     return res.json();
-  }
-      
-      )
-    .then(data => {
-      console.log('Response from backend: ', data);
-    })
-    .catch(error => {
-      console.error('Error: ', error);
-    })
-    
-    console.log('User Data:', userData);
+      .then(res => res.json())
+      .then(data => console.log(data))
+      .catch(err => console.log(err));
   };
 
   return (

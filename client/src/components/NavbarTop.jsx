@@ -14,7 +14,7 @@ const NavbarTop = ({ isMenuOpen, setIsMenuOpen }) => {
 
   return (
     <nav className={isMenuOpen ? "navbar-top" : "navbar-top-long"}>
-      <Link onClick={handleMenuToggle} to="/" className="navbar-top-logo"><img src={Menu}/></Link>
+      <Link onClick={handleMenuToggle} className="navbar-top-logo"><img src={Menu}/></Link>
       <Link to="/login" className="navbar-top-menu"><img src={WhiteLogo}/></Link>
       <Link to="/" className="navbar-top-notifications"><img src={Bell}/></Link>
     </nav>

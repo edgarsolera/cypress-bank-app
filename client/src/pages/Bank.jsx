@@ -1,9 +1,6 @@
 import { useState } from 'react';
 import './Bank.css';
-import NavbarSide from '../components/NavbarSide';
-import NavbarTop from '../components/NavbarTop';
-import BankAccount from '../components/BankAccounts';
-
+import { NavbarSide, NavbarTop, BankAccounts } from '../config/components-config';
 
 const Bank = () => {
   const [ isMenuOpen, setIsMenuOpen ] = useState(true);
@@ -17,7 +14,7 @@ const Bank = () => {
         
       </div>
       <div className="content-container">
-        <BankAccount/>
+        <BankAccounts/>
       </div>
     </div>
   );

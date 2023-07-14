@@ -1,18 +1,18 @@
-.my-account-main {
-   display: flex; 
-  flex-direction: column;
-  align-items: center;
-  width: 100vh;
-  height: auto;
-  box-shadow: 0 0px 4px rgba(0, 0, 0, 0.2);
-  background-color: #ffffff;
-  padding: 2vh 6vh 4vh 6vh; 
-}
-
-.my-account-container {
-  width: 100%;
+  .my-account-main {
+     display: flex; 
+    flex-direction: column;
+    align-items: center;
+    width: 100vh;
+    height: auto;
+    box-shadow: 0 0px 4px rgba(0, 0, 0, 0.2);
+    background-color: #ffffff;
+    padding: 2vh 6vh 4vh 6vh; 
   }
-  
+
+ .my-account-container {
+   width: 100%;
+   }
+   
   .my-account-header {
     display: flex;
     align-items: flex-start;
@@ -45,7 +45,9 @@
     padding: 5px;
     width: 40vh;
   }
-  
+  .my-account-form input::placeholder {
+    color: black;
+  }
   .my-account-save-button {
     background-color: #3e5eea;
     color: #ffffff;

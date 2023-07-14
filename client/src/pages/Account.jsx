@@ -1,9 +1,7 @@
 import { useState } from 'react';
 import './Account.css';
-import NavbarSide from '../components/NavbarSide';
-import NavbarTop from '../components/NavbarTop';
-import MyAccount from '../components/MyAccount';
-// import BankAccount from './BankAccounts';
+import { NavbarSide, NavbarTop, MyAccount } from '../config/components-config';
+
 
 const Account = () => {
   const [ isMenuOpen, setIsMenuOpen ] = useState(true);

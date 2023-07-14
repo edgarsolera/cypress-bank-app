@@ -23,7 +23,33 @@
     border-radius: 0.25rem;
     cursor: pointer;
   }
-  
+
+  .account-creation {
+    display: flex;
+    align-items:center;
+    justify-content: space-between;
+  }
+
+  .account-creation input {
+    width: 28vh;
+    height: 1.5vh;
+    margin-bottom: 2vh;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+
+  .account-creation input:focus  {
+    outline: none;
+    border-color: #3e5eea;
+    
+  }
+
+  .account-creation button {
+    margin-bottom: 2vh;
+  }
+
   .account-list {
     list-style: none;
     padding: 0;

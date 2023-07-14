@@ -1,0 +1,27 @@
+.welcome-container {
+display: flex;
+flex-direction: column;
+}
+
+.welcome-title{
+  margin: 2vh;
+  color: #3e5eea;
+  font-family: "Book Antiqua", serif;
+  font-size: 2vh;
+}
+
+.welcome-logo{
+ margin: 2vh;
+}
+
+
+.welcome-img img{
+  height: 16vh;
+  width: auto;
+}
+   
+
+.welcome-logo img{
+ width: auto;
+ height: 6vh;
+}

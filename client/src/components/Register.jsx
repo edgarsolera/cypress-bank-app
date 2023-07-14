@@ -23,7 +23,6 @@ export const Register = () => {
 
 
     fetch('http://localhost:8080/api/v1/user/register', {
-      mode: 'no-cors',
       method: 'POST',
       headers: {
         "Content-Type": "application/json",
@@ -32,22 +31,10 @@ export const Register = () => {
       },
       body: JSON.stringify(userData)
     })
-    .then(res => {
-        if (!res.ok) {
-      throw new Error ('Email already registered');
-    }
-     return res.json();
-  }
+      .then(res => res.json())
+      .then(data => console.log(data))
+      .catch(err => console.log(err));
       
-      )
-    .then(data => {
-      console.log('Response from backend: ', data);
-    })
-    .catch(error => {
-      console.error('Error: ', error);
-    })
-    
-    console.log('User Data:', userData);
   };
 
   return (

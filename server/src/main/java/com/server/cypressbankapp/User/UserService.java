@@ -11,21 +11,20 @@ import java.util.Optional;
 public class UserService {
        private UserRepository userRepository;
 
-            public boolean login(String email, String password) {
-                Optional<User> user = userRepository.findByEmail(email);
-                if (!user.isPresent()) {
-                    return false;
-                }
+       public boolean login(String email, String password) {
+           Optional<User> user = userRepository.findByEmail(email);
+           if (!user.isPresent()) {
+               return false;
+           }
 
-                String storedPassword = user.get().getPassword();
-
-                return BCrypt.checkpw(password,storedPassword);
-            }
+           String storedPassword = user.get().getPassword();
+           return BCrypt.checkpw(password,storedPassword);
+       }
 
         public boolean register(User user) {
             Optional<User> existingUser = userRepository.findByEmail(user.getEmail());
             if (existingUser.isPresent()) {
-                return false; // User already exists
+                return false;
             }
 
             String plainPassword = user.getPassword();
@@ -33,6 +32,6 @@ public class UserService {
             String hashedPassword = BCrypt.hashpw(plainPassword, salt);
             user.setPassword(hashedPassword);
             userRepository.save(user);
-            return true; // Registration successful
+            return true;
         }
 }

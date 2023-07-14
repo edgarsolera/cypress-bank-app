@@ -1,34 +1,38 @@
 package com.server.cypressbankapp.User;
 
 import lombok.AllArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.Optional;
 
 @AllArgsConstructor
 @Service
 public class UserService {
        private UserRepository userRepository;
 
+            public boolean login(String email, String password) {
+                Optional<User> user = userRepository.findByEmail(email);
+                if (!user.isPresent()) {
+                    return false;
+                }
 
-       public List<User> getAllUsers(){
-           return userRepository.findAll();
-       }
+                String storedPassword = user.get().getPassword();
 
-       public User insertUser(User user){
-           return userRepository.save(user);
-       }
+                return BCrypt.checkpw(password,storedPassword);
+            }
 
-       public ResponseEntity<String> register (User user){
+        public boolean register(User user) {
+            Optional<User> existingUser = userRepository.findByEmail(user.getEmail());
+            if (existingUser.isPresent()) {
+                return false; // User already exists
+            }
 
-           if (userRepository.findByEmail(user.getEmail()).isPresent()) {
-
-               return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("The user already exist");
-
-           }
-           userRepository.save(user);
-                return ResponseEntity.ok("User registered successfully");
-       }
+            String plainPassword = user.getPassword();
+            String salt = BCrypt.gensalt();
+            String hashedPassword = BCrypt.hashpw(plainPassword, salt);
+            user.setPassword(hashedPassword);
+            userRepository.save(user);
+            return true; // Registration successful
+        }
 }

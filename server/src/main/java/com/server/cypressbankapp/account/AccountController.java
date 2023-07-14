@@ -1,5 +1,7 @@
 package com.server.cypressbankapp.account;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,13 +24,23 @@ public class AccountController {
     }
 
     @PostMapping("/insert")
-    public void addAccount(@RequestBody Account account) {
-        accountService.insertAccount(account);
+    public ResponseEntity<String> addAccount(@RequestBody Account account) {
+        boolean accountSavedSuccess = accountService.insertAccount(account);
+        if (accountSavedSuccess) {
+            return ResponseEntity.status(HttpStatus.ACCEPTED).body("{\"message\":\"Account Saved successfully\"}");
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("{\"message\":\"The account already exist\"}");
+        }
     }
 
     @DeleteMapping("/delete/{id}")
-    public void deleteAccount(@PathVariable("id") String id){
-        accountService.deleteAccount(id);
+    public ResponseEntity<String> deleteAccount(@PathVariable("id") String id){
+        boolean accountDeletedSuccess = accountService.deleteAccount(id);
+        if (accountDeletedSuccess) {
+            return ResponseEntity.status(HttpStatus.ACCEPTED).body("{\"message\":\"Account Deleted successfully\"}");
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("{\"message\":\"The account doesnt exist\"}");
+        }
     }
 
 }

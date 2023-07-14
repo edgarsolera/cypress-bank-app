@@ -30,11 +30,8 @@ public class AccountService {
         if (accountId.isPresent()) {
             accountRepository.deleteById(id);
             return true;
-
         }else {
             return false;
         }
-
     }
-
 }
